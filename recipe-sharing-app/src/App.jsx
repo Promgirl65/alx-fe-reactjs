@@ -1,18 +1,25 @@
-import './App.css'
+// src/App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RecipeList from './components/RecipeList';
+import RecipeDetailsWrapper from './components/RecipeDetailsWrapper';
 import AddRecipeForm from './components/AddRecipeForm';
 
 function App() {
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Recipe App</h1>
+    <Router>
+      <div style={{ padding: '20px' }}>
+        <h1>Recipe App</h1>
+        <AddRecipeForm />
+        
+        <Routes>
+          {/* Main list of recipes */}
+          <Route path="/" element={<RecipeList />} />
 
-      {/* Add recipe form */}
-      <AddRecipeForm />
-
-      {/* Recipe list */}
-      <RecipeList />
-    </div>
+          {/* Recipe details page */}
+          <Route path="/recipe/:id" element={<RecipeDetailsWrapper />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
